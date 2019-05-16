@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -6,31 +8,47 @@ import java.util.Set;
 
 public class knn {
 	
-	public static void main(String[] args){	
-		System.out.println("iris");
-		knn("classification\\iris_train.txt","classification\\iris_test.txt",1,2);
-		System.out.println();
-
+	public static void main(String[] args) throws IOException{
 		
-		System.out.println("glass");
-		knn("classification\\glass_train.txt","classification\\glass_test.txt",1,0);
-		System.out.println();
 		
-		System.out.println("vowel");
-		knn("classification\\vowel_train.txt","classification\\vowel_test.txt",3,2);
-		System.out.println();
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String input = in.readLine();
+		int k;
+		int metricType;
 		
-		System.out.println("vehicle");
-		knn("classification\\vehicle_train.txt","classification\\vehicle_test.txt",3,1);
-		System.out.println();
+		while(!input.contains("exit")) {
+			k = Integer.parseInt(in.readLine());
+			metricType = Integer.parseInt(in.readLine());
+			System.out.println(input);
+			knn("classification\\"+input+"_train.txt","classification\\"+input+"_test.txt",k,metricType);
+			System.out.println();
+			input = in.readLine();
+		}
 		
-		System.out.println("letter");
-		knn("classification\\letter_train.txt","classification\\letter_test.txt",3,0);
-		System.out.println();
-		
-		System.out.println("DNA");
-		knn("classification\\dna_train.txt","classification\\dna_test.txt",5,2);
-		System.out.println();
+//		System.out.println("iris");
+//		knn("classification\\iris_train.txt","classification\\iris_test.txt",1,2);
+//		System.out.println();
+//
+//		
+//		System.out.println("glass");
+//		knn("classification\\glass_train.txt","classification\\glass_test.txt",1,0);
+//		System.out.println();
+//		
+//		System.out.println("vowel");
+//		knn("classification\\vowel_train.txt","classification\\vowel_test.txt",3,2);
+//		System.out.println();
+//		
+//		System.out.println("vehicle");
+//		knn("classification\\vehicle_train.txt","classification\\vehicle_test.txt",3,1);
+//		System.out.println();
+//		
+//		System.out.println("letter");
+//		knn("classification\\letter_train.txt","classification\\letter_test.txt",3,0);
+//		System.out.println();
+//		
+//		System.out.println("DNA");
+//		knn("classification\\dna_train.txt","classification\\dna_test.txt",5,2);
+//		System.out.println();
 	}
 	
 	public static void knn(String trainingFile, String testFile, int K, int metricType){
